@@ -25,7 +25,7 @@ export default {
   name: 'character-edit',
   created: function() {
     let vm = this
-    if(vm.$route.params && vm.$route.params.id){
+    if(vm.$route.params && vm.$route.params.id && vm.$route.params.id!=0){
       vm.id = vm.$route.params.id
       vm.getData()
     }
@@ -67,7 +67,7 @@ export default {
     },
     save() {
       const vm = this
-      if (vm.id) {
+      if (vm.id && vm.id!=0) {
         return vm.$ajax('put', '/api/character/'+vm.id, vm.form, data => {
           vm.toList()
         }, error => {

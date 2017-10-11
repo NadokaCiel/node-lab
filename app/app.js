@@ -9,6 +9,7 @@ import winston from 'winston'
 import expressWinston from 'express-winston'
 import path from 'path'
 import history from 'connect-history-api-fallback'
+import bodyParser from 'body-parser'
 
 const app = express()
 
@@ -24,6 +25,9 @@ app.all('*', (req, res, next) => {
 	    next()
 	}
 })
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 const MongoStore = connectMongo(session)
 app.use(cookieParser())
@@ -66,4 +70,6 @@ app.use(expressWinston.errorLogger({
 
 app.use(history())
 app.use(express.static('./public'))
-app.listen(config.port)
+app.listen(config.port, () => {
+  console.log(`${config.name} listening on port ${config.port}`)
+})

@@ -34,7 +34,6 @@ export default {
     }
   },
   created: function() {
-    console.log(this.menu)
   },
   methods:{
     getRouter(){

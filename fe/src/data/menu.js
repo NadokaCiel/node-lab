@@ -9,8 +9,6 @@ function getMenu() {
         route: "Home",
     }]
 
-    console.log(Catalog)
-
     Object.keys(Catalog).forEach(k => {
         const level1 = Catalog[k]
         const item = {
