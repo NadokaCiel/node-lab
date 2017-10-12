@@ -23,7 +23,7 @@ function getMenu() {
                 return
             }
             const sub = {
-                name: level2.name || k + '-' + p,
+                name: level2.name || p,
                 route: k + '-' + p,
                 icon: level2.icon || "fa-question",
             }

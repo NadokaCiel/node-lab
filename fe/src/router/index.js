@@ -34,7 +34,7 @@ function getRoutes() {
       }
       const route = {
         path: item.path || '/' + k.toLowerCase() + '/' + p.toLowerCase(),
-        name: k + '-' + p,
+        name: p == 'self' ? k : k + '-' + p,
         component: item.component
       }
 

@@ -51,7 +51,7 @@ export default {
 
 <style lang="less" scoped>
 @import '../style/color.less';
-
+@navpanel:darken(@co7, 10%);
 .nav {
   width: 50px;
   position: fixed;
@@ -61,6 +61,7 @@ export default {
   z-index: 100;
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: @navpanel;
   transition: all .3s ease;
 
   &:hover {
@@ -70,7 +71,7 @@ export default {
     font-size: 16px;
   }
   .el-menu-item {
-    padding-left: 18px !important;
+    padding-left: 15px !important;
   }
   .el-icon-null {
     display: inline-block;
@@ -80,8 +81,52 @@ export default {
 }
 </style>
 <style lang="less">
+@import '../style/color.less';
+@navpanel: darken(@co7, 10%);
+
 .nav {
+  .el-menu-item, .el-submenu__title {
+    color: @navsub;
+    background-color: @navpanel;
+
+    i {
+      color: @navsub;
+    }
+    &:hover {
+      background-color: @navsub;
+      color: @navpanel;
+
+      i {
+        color: @navpanel;
+      }
+    }
+    &.is-active {
+      background-color: darken(@navsub, 10%);
+      color: @navpanel;
+
+      i {
+        color: @navpanel;
+      }
+    }
+  }
+  .el-submenu {
+    border-top: 2px solid darken(@co6, 10%);
+    // border-left: 2px solid darken(@co6, 10%);
+    border-bottom: 2px solid darken(@co6, 10%);
+  }
+  .el-submenu .el-menu-item {
+    background-color: @co7;
+
+    &:hover {
+      background-color: @navsub;
+    }
+    &.is-active {
+      background-color: darken(@navsub, 10%);
+    }
+  }
   .el-submenu__title {
+    padding-left: 15px !important;
+
     .el-submenu__icon-arrow {
       visibility: hidden;
     }
