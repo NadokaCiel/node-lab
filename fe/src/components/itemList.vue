@@ -1,10 +1,10 @@
 <template>
   <div class="item-list" tabindex="-1" @keyup.left="change('left')" @keyup.right="change('right')">
     <el-carousel :interval="0" type="card" height="400px" ref="bag" @change="getIndex">
-      <el-carousel-item v-for="(item,index) in 6" :key="item">
-        <div class="item-panel">
-          <div class="item-line">
-            {{nowIndex == index ? item : ""}}
+      <el-carousel-item v-for="(pocket,index) in pocketList" :key="pocket.name">
+        <div class="pocket-panel" :class="pocket.name+'-panel'">
+          <div class="pocket-line">
+            {{nowIndex == index ? pocket.name : ""}}
           </div>
         </div>
       </el-carousel-item>
@@ -21,7 +21,18 @@ export default {
   name: 'item-list',
   data() {
     return {
-      nowIndex:0
+      nowIndex:0,
+      pocketList:[{
+        name:'medicines'
+      },{
+        name:'weapons'
+      },{
+        name:'equipment'
+      },{
+        name:'accessory'
+      },{
+        name:'valuables'
+      }]
     }
   },
   created: function() {
@@ -56,6 +67,21 @@ export default {
 @import '../style/color.less';
 .item-list {
   outline: 0;
+  .medicines-panel{
+    background-color: @co12;
+  }
+  .weapons-panel{
+    background-color: @co10;
+  }
+  .equipment-panel{
+    background-color: @co16;
+  }
+  .accessory-panel{
+    background-color: @co13;
+  }
+  .valuables-panel{
+    background-color: @co4;
+  }
 }
 </style>
 <style lang="less">
@@ -64,11 +90,12 @@ export default {
   .el-carousel__item {
     background-color: @co10;
 
-    .item-panel {
+    .pocket-panel {
       opacity: .24;
+      height: 100%;
     }
     &.is-active {
-      .item-panel {
+      .pocket-panel {
         opacity: 1;
       }
     }
