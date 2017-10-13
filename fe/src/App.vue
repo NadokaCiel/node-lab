@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" tabindex="-1" @keyup.up="change('up')" @keyup.down="change('down')" @keyup.left="change('left')" @keyup.right="change('right')">
     <div @mouseenter="onMenu(true)" @mouseleave="onMenu(false)">
       <nav-bar></nav-bar>
     </div>
@@ -33,9 +33,12 @@ export default {
   methods:{
     onMenu(isFoled){
       this.expand = isFoled
+    },
+    change(key){
+      this.bus.$emit('keyup',key)
     }
   },
-  computed: mapState([]),
+  computed: mapState(["bus"]),
   components: {
     navBar
   }
@@ -47,6 +50,7 @@ export default {
   font-family: "Microsoft YaHei", "Verdana", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  outline: 0;
 
   .app-view {
     margin-left: 50px;

@@ -1,41 +1,74 @@
 <template>
-  <div class="item-list" tabindex="-1" @keyup.left="change('left')" @keyup.right="change('right')">
+  <div class="item-list">
     <el-carousel :interval="0" type="card" height="400px" ref="bag" @change="getIndex">
       <el-carousel-item v-for="(pocket,index) in pocketList" :key="pocket.name">
-        <div class="pocket-panel" :class="pocket.name+'-panel'">
-          <div class="pocket-line">
-            {{nowIndex == index ? pocket.name : ""}}
-          </div>
-        </div>
+        <pocket class="pocket-panel" :pocket="pocket" :pocket-title="nowIndex == index ? pocket.name : ''">
+        </pocket>
       </el-carousel-item>
     </el-carousel>
   </div>
 </template>
 
-
-
-
 <script>
 import { mapState } from 'vuex'
+import pocket from './pocket.vue'
 export default {
   name: 'item-list',
   data() {
+    const list = [{
+          name:'HP potion - S',
+          count:20,
+          rarity:'normal'
+        },{
+          name:'HP potion - M',
+          count:10,
+          rarity:'normal'
+        },{
+          name:'HP potion - L',
+          count:2,
+          rarity:'rare'
+        },{
+          name:'MP potion - S',
+          count:15,
+          rarity:'normal'
+        },{
+          name:'MP potion - M',
+          count:6,
+          rarity:'rare'
+        },{
+          name:'Ginseng',
+          count:1,
+          rarity:'epic'
+        },{
+          name:'Saucer Peach',
+          count:1,
+          rarity:'lengendary'
+        }]
     return {
       nowIndex:0,
       pocketList:[{
-        name:'medicines'
+        name:'Medicines',
+        items:list
       },{
-        name:'weapons'
+        name:'Weapons',
+        items:list
       },{
-        name:'equipment'
+        name:'Equipment',
+        items:list
       },{
-        name:'accessory'
+        name:'Accessory',
+        items:list
       },{
-        name:'valuables'
+        name:'Valuables',
+        items:list
       }]
     }
   },
   created: function() {
+    const vm = this
+    vm.bus.$on('keyup',key=>{
+      vm.change(key)
+    })
   },
   methods:{
     getIndex(i){
@@ -57,8 +90,9 @@ export default {
       }
     }
   },
-  computed: mapState([]),
+  computed: mapState(["bus"]),
   components: {
+    pocket
   }
 }
 </script>
@@ -66,22 +100,6 @@ export default {
 <style lang="less" scoped>
 @import '../style/color.less';
 .item-list {
-  outline: 0;
-  .medicines-panel{
-    background-color: @co12;
-  }
-  .weapons-panel{
-    background-color: @co10;
-  }
-  .equipment-panel{
-    background-color: @co16;
-  }
-  .accessory-panel{
-    background-color: @co13;
-  }
-  .valuables-panel{
-    background-color: @co4;
-  }
 }
 </style>
 <style lang="less">

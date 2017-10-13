@@ -1,9 +1,11 @@
 import Vue from 'vue'
 export default {
   state: {
+    bus: new Vue(),
     appName: 'node-lab',
   },
   getters: {
+    bus: state => state.bus,
     appName: state => state.appName,
   },
   mutations: {
