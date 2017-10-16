@@ -2,7 +2,7 @@
   <div class="item-list">
     <el-carousel :interval="0" type="card" height="400px" ref="bag" @change="getIndex">
       <el-carousel-item v-for="(pocket,index) in pocketList" :key="pocket.name">
-        <pocket class="pocket-panel" :pocket="pocket" :pocket-title="nowIndex == index ? pocket.name : ''">
+        <pocket class="pocket-panel" :pocket="pocket" :pocket-title="nowIndex == index ? pocket.name : ''" :is-active="nowIndex == index">
         </pocket>
       </el-carousel-item>
     </el-carousel>
@@ -16,6 +16,62 @@ export default {
   name: 'item-list',
   data() {
     const list = [{
+          name:'HP potion - S',
+          count:20,
+          rarity:'normal'
+        },{
+          name:'HP potion - M',
+          count:10,
+          rarity:'normal'
+        },{
+          name:'HP potion - L',
+          count:2,
+          rarity:'rare'
+        },{
+          name:'MP potion - S',
+          count:15,
+          rarity:'normal'
+        },{
+          name:'MP potion - M',
+          count:6,
+          rarity:'rare'
+        },{
+          name:'Ginseng',
+          count:1,
+          rarity:'epic'
+        },{
+          name:'Saucer Peach',
+          count:1,
+          rarity:'lengendary'
+        },{
+          name:'HP potion - S',
+          count:20,
+          rarity:'normal'
+        },{
+          name:'HP potion - M',
+          count:10,
+          rarity:'normal'
+        },{
+          name:'HP potion - L',
+          count:2,
+          rarity:'rare'
+        },{
+          name:'MP potion - S',
+          count:15,
+          rarity:'normal'
+        },{
+          name:'MP potion - M',
+          count:6,
+          rarity:'rare'
+        },{
+          name:'Ginseng',
+          count:1,
+          rarity:'epic'
+        },{
+          name:'Saucer Peach',
+          count:1,
+          rarity:'lengendary'
+        },{
           name:'HP potion - S',
           count:20,
           rarity:'normal'
@@ -106,7 +162,7 @@ export default {
 @import '../style/color.less';
 .item-list {
   .el-carousel__item {
-    background-color: @co10;
+    background-color: @blue;
 
     .pocket-panel {
       opacity: .24;

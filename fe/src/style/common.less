@@ -13,14 +13,37 @@
    visibility: hidden;  
 }
 .normal{
-	color: @navsub;
+	color: @lighter;
 }
 .rare{
 	color: @a5;
 }
 .epic{
-	color: @co16;
+	color: @co24;
 }
 .lengendary{
 	color:@co17;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: @a5;
+    border-radius: 7px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 7px;
+}
+
+::-webkit-scrollbar-track-piece {
+    border-radius: 7px;
+    background: @sec2;
 }

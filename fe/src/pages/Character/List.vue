@@ -7,19 +7,18 @@
       <el-table-column prop="name" label="Name">
       </el-table-column>
       <el-table-column prop="type" label="Type" width="200">
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-tag class="tag" :class="[typeMap[type]]" type="success" close-transition v-for="type in scope.row.types" :key="type">{{type}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="Create Time" width="200">
-        <template scope="scope">
+        <template slot-scope="scope">
           {{scope.row.Created_date | date}}
         </template>
       </el-table-column>
       <el-table-column label="Operation" width="200">
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-button class="line-btn" type="text" size="mini" @click="toEdit(scope.row._id)">Edit</el-button>
-          <!-- <el-button type="text" size="small" @click="deleteLine(scope.row)">Delete</el-button> -->
           <el-popover width="160" v-model="scope.row.showDelete">
             <p>确定删除吗？</p>
             <div style="text-align: right; margin: 0">

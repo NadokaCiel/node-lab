@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="/dist/appcache/manifest.appcache">
 
 <head>
   <meta charset="utf-8">

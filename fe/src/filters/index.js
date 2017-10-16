@@ -22,8 +22,8 @@ export function timeNormalize(time) {
 	}
 }
 
-export function date(time) {
-	return new Date(time).Format("yyyy-MM-dd hh:mm:ss")
+export function date(time, format="yyyy-MM-dd hh:mm:ss") {
+	return new Date(time).Format(format)
 }
 
 function pluralize(time, label) {
