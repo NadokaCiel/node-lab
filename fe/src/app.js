@@ -20,6 +20,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome.css'
 import './style/common.less'
 
+//For Offline Support
+import * as OfflinePluginRuntime from 'offline-plugin/runtime'
+OfflinePluginRuntime.install()
+
 
 Vue.use(Vuex)
 Vue.use(Router)

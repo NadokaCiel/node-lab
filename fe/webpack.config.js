@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const OfflinePlugin = require('offline-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -127,6 +128,7 @@ if (isProd) {
       filename: 'common.[chunkhash].css'
     }),
     new FriendlyErrorsPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin()
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new OfflinePlugin()
   ])
 }
