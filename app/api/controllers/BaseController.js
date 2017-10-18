@@ -1,18 +1,21 @@
-export default class BaseController {
+'use strict';
+
+class BaseController {
 	constructor() {
-		this.makeList = this.makeList.bind(this)
+		this.repackList = this.repackList.bind(this)
 	}
-	async makeList(model, req, res) {
+	async repackList(model, req, res) {
 		let size = Number(req.query.size) || 10
 		let page = req.query.page || 1
 		let offset = Number((page - 1) * size)
 		try {
 			const arr = await model.find().skip(offset).limit(size)
 			const count = await model.count()
-			return success(res, repackList(arr, count))
+			return this.success(res, this.makeList(arr, count))
 		} catch (err) {
-			return error(res, err)
+			return this.error(res, err)
 		}
+		return this.error(res)
 	}
 
 	success(res, data) {
@@ -27,11 +30,11 @@ export default class BaseController {
 
 		return res.send({
 			status: 'error',
-			massage
+			massage: massage && massage.length > 0 ? massage : '未知错误'
 		})
 	}
 
-	repackList(arr, count) {
+	makeList(arr, count) {
 
 		return {
 			list: arr,
@@ -39,3 +42,5 @@ export default class BaseController {
 		}
 	}
 }
+
+export default BaseController

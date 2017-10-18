@@ -3,17 +3,20 @@
 import mongoose from 'mongoose'
 
 const idsSchema = new mongoose.Schema({
+	user_id: Number,
 	character_id: Number,
 });
 
-const Ids = mongoose.model('Ids', idsSchema);
+export const Ids = mongoose.model('Ids', idsSchema)
 
 Ids.findOne((err, data) => {
 	if (!data) {
 		const newIds = new Ids({
+			user_id: 0,
 			character_id: 0,
 		});
 		newIds.save();
 	}
 })
-export default Ids
+
+export const idList = ['user_id','character_id']

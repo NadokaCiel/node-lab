@@ -9,7 +9,7 @@ const router = express.Router();
     .post(Character.create);
 
 
-  router.route('/character/:characterId')
+  router.route('/character/:id')
     .get(Character.read)
     .put(Character.update)
     .delete(Character.delete);

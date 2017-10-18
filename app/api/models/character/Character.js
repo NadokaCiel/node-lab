@@ -10,7 +10,7 @@ const CharacterSchema = new Schema({
     type: String,
     Required: 'Kindly enter the name of the character'
   },
-  Created_date: {
+  create_time: {
     type: Date,
     default: Date.now
   },
