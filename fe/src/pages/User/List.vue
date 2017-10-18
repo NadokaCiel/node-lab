@@ -1,17 +1,14 @@
 <template>
-  <div class="character-list">
+  <div class="user-list">
     <div class="tool">
       <el-button type="primary" icon="el-icon-plus" @click="toAdd"></el-button>
     </div>
     <el-table class="my-list" :data="list" border :highlight-current-row="true">
       <el-table-column prop="id" label="ID">
       </el-table-column>
-      <el-table-column prop="name" label="Name">
+      <el-table-column prop="user_name" label="Name">
       </el-table-column>
-      <el-table-column prop="type" label="Type" width="200">
-        <template slot-scope="scope">
-          <el-tag class="tag" :class="[typeMap[type]]" type="success" close-transition v-for="type in scope.row.types" :key="type">{{type}}</el-tag>
-        </template>
+      <el-table-column prop="password" label="Password">
       </el-table-column>
       <el-table-column label="Create Time" width="200">
         <template slot-scope="scope">
@@ -40,18 +37,13 @@
 <script>
 import { mapState } from 'vuex'                     
 export default {
-  name: 'character-list',
+  name: 'user-list',
   created: function() {
     let vm = this
     vm.getList()
   },
   data() {
     return {
-      typeMap:{
-        "physical":"physical",
-        "spell":"spell",
-        "supporter":"supporter"
-      },
       list:[],
       page:1,
       total:0,
@@ -62,14 +54,14 @@ export default {
     toAdd() {
       const vm = this
       vm.$router.push({
-        name: 'Character-Edit',
+        name: 'User-Edit',
         params:{id:0}
       })
     },
     toEdit(id) {
       const vm = this
       vm.$router.push({
-        name: 'Character-Edit',
+        name: 'User-Edit',
         params:{id}
       })
     },
@@ -83,7 +75,7 @@ export default {
     },
     getList() {
       const vm = this
-      vm.$ajax('get', '/api/character', {
+      vm.$ajax('get', '/api/user', {
         page: vm.page,
         size: vm.size
       }, data => {
@@ -100,7 +92,7 @@ export default {
     deleteLine(line){
       const vm = this
       let id = line.id || line._id
-      return vm.$ajax('delete', '/api/character/'+id,{}, data => {
+      return vm.$ajax('delete', '/api/user/'+id,{}, data => {
         vm.getList()
       }, error => {
         console.log(error)
@@ -118,7 +110,7 @@ export default {
 
 <style lang="less" scoped>
 @import '../../style/color.less';
-.character-list {
+.user-list {
   .tool{
     margin: 20px auto;
     width: 80%;
