@@ -8,7 +8,7 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 
 db.once('open' ,() => {
-	console.log('连接数据库成功')
+	console.log("MongoDb's ready.")
 })
 
 db.on('error', function(error) {
@@ -17,7 +17,7 @@ db.on('error', function(error) {
 });
 
 db.on('close', function() {
-    console.log('数据库断开，重新连接数据库');
+    console.log("MongoDb is disconnected, reconnecting...");
     mongoose.connect(config.url, {server:{auto_reconnect:true}});
 });
 

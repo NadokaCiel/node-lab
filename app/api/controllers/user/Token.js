@@ -27,7 +27,7 @@ class Token {
 			const token = encryption(req.body.user_name)
 			await store.setAsync(token, 'true', 'EX', 7 * 24 * 60 * 60 * 1000)
 			res.cookie('token', token, { maxAge:7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: false })
-		    await success(res, "Login successfully.")
+		    return success(res, "Login successfully.")
 		}
 		catch(err){
 			await error(res, err)
@@ -35,9 +35,14 @@ class Token {
 	}
 
 	async delete(req, res) {
+		const token = req.cookies.token
+		if(!token){
+			return success(res, "Logout successfully.")
+		}
 		try{
+			await store.delAsync(token)
 			res.clearCookie('token')
-			await success(res, "Logout successfully.")
+			return success(res, "Logout successfully.")
 		}
 		catch(err){
 			await error(res, err)

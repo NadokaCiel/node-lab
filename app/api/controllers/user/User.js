@@ -20,9 +20,10 @@ class User {
 			return error(res, "Parameter missing！")
 		}
 		const new_user = new UserModel(req.body)
-		new_user.id = await getId('user_id')
-		new_user.password = encryption(new_user.password)
 		try{
+			new_user.id = await getId('user_id')
+		    new_user.password = encryption(new_user.password)
+
 			const user = await new_user.save()
 			await success(res, user)
 		}
