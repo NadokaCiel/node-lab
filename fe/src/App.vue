@@ -1,6 +1,6 @@
 <template>
   <div id="app" tabindex="-1" @keyup.up="change('up')" @keyup.down="change('down')" @keyup.left="change('left')" @keyup.right="change('right')">
-    <div @mouseenter="onMenu(true)" @mouseleave="onMenu(false)">
+    <div @mouseenter="onMenu(true)" @mouseleave="onMenu(false)" v-if="$route.name!='Login'">
       <nav-bar></nav-bar>
     </div>
     <transition name="el-fade-in-linear">
@@ -38,7 +38,11 @@ export default {
       this.bus.$emit('keyup',key)
     }
   },
-  computed: mapState(["bus"]),
+  computed: mapState({
+    bus: 'bus',
+  }),
+  watch:{
+  },
   components: {
     navBar
   }

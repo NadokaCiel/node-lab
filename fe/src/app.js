@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueCookie from 'vue-cookie'
 import Router from 'vue-router'
 import EleConfig from './config/element'
 // import ElementUI from 'element-ui'
@@ -11,8 +12,8 @@ import data from './store'
 import router from './router'
 
 import {ajax} from './lib/ajax'
+import {hint} from './lib/message'
 import _ from "lodash"
-import "babel-polyfill"
 
 import 'flex.css'
 import 'normalize.css'
@@ -26,9 +27,11 @@ OfflinePluginRuntime.install()
 
 
 Vue.use(Vuex)
+Vue.use(VueCookie)
 Vue.use(Router)
 // Vue.use(ElementUI)
 Vue.prototype.$ajax = ajax
+Vue.prototype.$hint = hint
 
 //注册全局过滤器
 Object.keys(filters).forEach(key => {
@@ -36,6 +39,8 @@ Object.keys(filters).forEach(key => {
 })
 
 const store = new Vuex.Store(data)
+
+const unsync = sync(store, router)
 
 const app = new Vue({
 	store,

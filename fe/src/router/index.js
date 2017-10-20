@@ -1,6 +1,7 @@
 import Router from 'vue-router'
 
 import Home from '../pages/Home.vue'
+import Login from '../pages/Login.vue'
 
 import Catalog from './catalog'
 
@@ -13,7 +14,12 @@ const router = new Router({
   routes: getRoutes()
 })
 router.beforeEach((to, from, next) => {
-  next();
+  const token = router.app.$cookie.get('token')
+  if(!token && to.name != "Login"){
+    next({name:"Login"})
+  }else{
+    next()
+  }
 })
 
 function getRoutes() {
@@ -24,6 +30,10 @@ function getRoutes() {
     path: '/home',
     name: "Home",
     component: Home
+  }, {
+    path: '/login',
+    name: "Login",
+    component: Login
   }]
 
   Object.keys(Catalog).forEach(k => {

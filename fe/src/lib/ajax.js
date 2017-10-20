@@ -1,11 +1,13 @@
+import Vue from 'vue'
 import axios from 'axios'
 
-export function ajax(method, url, payload, successFunc, errorFunc) {
+const vm = new Vue()
+
+export function ajax(method, url, payload = {}, successFunc, errorFunc) {
 	if (!axios[method]) {
 		errorFunc()
 		throw new Error('不支持的请求类型');
 	}
-	payload = payload || {}
 	if (method == 'get') {
 		url = getUrl(url, payload)
 	}
@@ -17,7 +19,10 @@ export function ajax(method, url, payload, successFunc, errorFunc) {
 			errorFunc && errorFunc(data)
 		}
 	}).catch(error => {
-		console.log(error);
+		console.log(error)
+		vm.$hint("There was a problem connecting to the server", 'Server Failure.', {
+			type: 'error'
+		})
 		errorFunc && errorFunc(error)
 	});
 }
@@ -28,6 +33,6 @@ function getUrl(url, payload) {
 	Object.keys(payload).forEach(k => {
 		query.push(k + "=" + payload[k])
 	})
-	query.length>0?queryString="?"+query.join('&'):''
+	query.length > 0 ? queryString = "?" + query.join('&') : ''
 	return url + queryString
 }
