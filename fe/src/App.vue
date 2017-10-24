@@ -1,5 +1,5 @@
 <template>
-  <div id="app" tabindex="-1" @keyup.up="change('up')" @keyup.down="change('down')" @keyup.left="change('left')" @keyup.right="change('right')">
+  <div id="app" tabindex="-1" @keyup="getKey">
     <div @mouseenter="onMenu(true)" @mouseleave="onMenu(false)" v-if="$route.name!='Login'">
       <nav-bar></nav-bar>
     </div>
@@ -11,6 +11,7 @@
 
 <script>
 import navBar from './components/nav.vue'
+import key from './data/key'
 import { mapState } from 'vuex'
 export default {
   name: 'app',
@@ -34,8 +35,10 @@ export default {
     onMenu(isFoled){
       this.expand = isFoled
     },
-    change(key){
-      this.bus.$emit('keyup',key)
+    getKey(event){
+      if(event && event.key && key[event.key]){
+        this.bus.$emit('keyup',key[event.key])
+      }
     }
   },
   computed: mapState({
