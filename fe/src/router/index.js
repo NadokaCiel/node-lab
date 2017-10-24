@@ -14,8 +14,8 @@ const router = new Router({
   routes: getRoutes()
 })
 router.beforeEach((to, from, next) => {
-  const token = router.app.$cookie.get('token')
-  if(!token && to.name != "Login"){
+  const auth = router.app.$cookie.get('auth')
+  if(!auth && to.name != "Login"){
     next({name:"Login"})
   }else{
     next()

@@ -24,9 +24,12 @@ class Token {
 			return error(res, "Wrong password")
 		}
 		try{
-			const token = encryption(req.body.user_name)
+			const now = Date.now() + ''
+			const token = encryption(req.body.user_name + now)
+			const auth = encryption(req.body.user_name)
 			await store.setAsync(token, 'true', 'EX', 7 * 24 * 60 * 60 * 1000)
 			res.cookie('token', token, { maxAge:7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: false })
+			res.cookie('auth', auth, { maxAge:7 * 24 * 60 * 60 * 1000, httpOnly: false, secure: false })
 		    return success(res, "Login successfully.")
 		}
 		catch(err){
