@@ -1,8 +1,13 @@
 {
-  	"presets": ["stage-3"],
-  	"plugins": [
-  		"transform-async-to-generator",
-        "transform-es2015-modules-commonjs",
-        "transform-export-extensions"
+    "presets": [
+      ["env", {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
     ]
-}
+  }

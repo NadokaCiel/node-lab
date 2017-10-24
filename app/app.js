@@ -72,6 +72,5 @@ app.use(expressWinston.errorLogger({
 
 app.use(history())
 app.use(express.static('./public'))
-app.listen(config.port, () => {
-  console.log(`${config.name} listening on port ${config.port}`)
-})
+
+export default app
