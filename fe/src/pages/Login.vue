@@ -6,7 +6,7 @@
         <el-input v-model="form.user_name" placeholder="Please Enter Your Username"></el-input>
       </el-form-item>
       <el-form-item label="Password" required prop="password">
-        <el-input v-model="form.password" placeholder="Please Enter Your Password"></el-input>
+        <el-input type="password" v-model="form.password" placeholder="Please Enter Your Password" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item style="text-align: center;">
         <c-button type="primary" :clickFunc="[login]">Login</c-button>
@@ -44,8 +44,6 @@ export default {
       }
       return vm.$ajax('post', '/api/token/',vm.form, data => {
         vm.$router.push({name:"Home"})
-      }, error => {
-        console.log(error)
       })
     }
   },

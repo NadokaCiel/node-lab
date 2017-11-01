@@ -16,11 +16,14 @@ export function ajax(method, url, payload = {}, successFunc, errorFunc) {
 		if (data.status == "success") {
 			successFunc && successFunc(data.data)
 		} else {
+			vm.$hint(data.massage, 'Operation Failed', {
+				type: 'error'
+			})
 			errorFunc && errorFunc(data)
 		}
 	}).catch(error => {
 		console.log(error)
-		vm.$hint("There was a problem connecting to the server", 'Server Failure.', {
+		vm.$hint("There was a problem connecting to the server", 'Server Failure', {
 			type: 'error'
 		})
 		errorFunc && errorFunc(error)

@@ -15,7 +15,7 @@ const defaultOptions = {
 }
 
 export function hint(message = defaultMassage, title = defaultTitle, options = defaultOptions) {
-	const hintOption = Object.assign(JSON.parse(JSON.stringify(defaultOptions)), options)
-	console.log(hintOption)
+	const config = Object.assign({}, defaultOptions)
+	const hintOption = Object.assign(config, options)
 	vm.$alert(message, title, hintOption)
 }
