@@ -12,7 +12,7 @@ import {
 class User {
 
 	async list(req, res) {
-		await repackList(UserModel, req, res)
+		await repackList(UserModel, req, res, '-password')
 	}
 
 	async create(req, res) {
@@ -37,7 +37,7 @@ class User {
 			return error(res, "Parameter missing！")
 		}
 		try{
-			const user = await UserModel.findOne({id:req.params.id})
+			const user = await UserModel.findOne({id:req.params.id}).select('-password')
 			await success(res, user)
 		}
 		catch(err){

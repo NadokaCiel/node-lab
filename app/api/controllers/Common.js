@@ -3,19 +3,20 @@
 import crypto from 'crypto'
 import {Ids,idList} from '../models/ids'
 
-export function repackList(model, req, res) {
+export async function repackList(model, req, res, select) {
 	let size = Number(req.query.size) || 10
 	let page = req.query.page || 1
 	let offset = Number((page - 1) * size)
-	model.find({}, function(err, arr) {
-		if (err)
-			return error(res, err)
-		model.count({}, function(err, count) {
-			if (err)
-				return error(res, err)
-			return success(res, makeList(arr, count))
-		});
-	}).skip(offset).limit(size);
+	let filter = select || ''
+
+	try {
+		const arr = await model.find().select(filter).skip(offset).limit(size)
+		const count = await model.count()
+		return success(res, makeList(arr, count))
+	} catch (err) {
+		return error(res, err)
+	}
+	return error(res)
 }
 
 export function success(res, data) {
