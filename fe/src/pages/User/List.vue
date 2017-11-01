@@ -8,8 +8,8 @@
       </el-table-column>
       <el-table-column prop="user_name" label="Name">
       </el-table-column>
-      <el-table-column prop="password" label="Password">
-      </el-table-column>
+      <!-- <el-table-column prop="password" label="Password">
+      </el-table-column> -->
       <el-table-column label="Create Time" width="200">
         <template slot-scope="scope">
           {{scope.row.create_time | date}}
@@ -84,9 +84,6 @@ export default {
         })
         vm.list = data.list
         vm.total = data.total
-        console.log(data)
-      }, error => {
-        console.log(error)
       })
     },
     deleteLine(line){
@@ -94,8 +91,6 @@ export default {
       let id = line.id || line._id
       return vm.$ajax('delete', '/api/user/'+id,{}, data => {
         vm.getList()
-      }, error => {
-        console.log(error)
       })
     }
   },

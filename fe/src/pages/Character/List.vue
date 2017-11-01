@@ -92,9 +92,6 @@ export default {
         })
         vm.list = data.list
         vm.total = data.total
-        console.log(data)
-      }, error => {
-        console.log(error)
       })
     },
     deleteLine(line){
@@ -102,8 +99,6 @@ export default {
       let id = line.id || line._id
       return vm.$ajax('delete', '/api/character/'+id,{}, data => {
         vm.getList()
-      }, error => {
-        console.log(error)
       })
     }
   },

@@ -20,7 +20,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import cButton from '../../components/cButton.vue'
 export default {
   name: 'character-edit',
   created: function() {
@@ -60,8 +59,6 @@ export default {
       const vm = this
       return vm.$ajax('get', '/api/character/'+vm.id,{}, data => {
         vm.form = data
-      }, error => {
-        console.log(error)
       })
     },
     save() {
@@ -69,14 +66,10 @@ export default {
       if (vm.id && vm.id!=0) {
         return vm.$ajax('put', '/api/character/'+vm.id, vm.form, data => {
           vm.toList()
-        }, error => {
-          console.log(error)
         })
       } else {
         return vm.$ajax('post', '/api/character', vm.form, data => {
           vm.toList()
-        }, error => {
-          console.log(error)
         })
       }
     }
@@ -84,7 +77,6 @@ export default {
   computed: mapState({}),
   watch: {},
   components: {
-    cButton
   }
 }
 </script>

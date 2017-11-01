@@ -7,8 +7,8 @@
       </el-menu-item>
       <el-submenu v-if="item.sub && item.sub.length!=0" :index="item.route">
         <template slot="title">
-        <i class="fa fa-fw" :class="item.icon ? item.icon : 'el-icon-null'"></i>
-        <span>{{showText ? item.name : ''}}</span>
+          <i class="fa fa-fw" :class="item.icon ? item.icon : 'el-icon-null'"></i>
+          <span>{{showText ? item.name : ''}}</span>
         </template>
         <el-menu-item v-for="(subItem,index) in item.sub" :index="subItem.route" :key="index">
           <i class="fa fa-fw" :class="subItem.icon ? subItem.icon : 'el-icon-null'"></i>
@@ -18,8 +18,6 @@
     </template>
   </el-menu>
 </template>
-
-
 
 
 <script>
@@ -70,6 +68,7 @@ export default {
   }
   [class*=" el-icon-"], [class^=el-icon-], [class*=" fa-"], [class^=fa-] {
     font-size: 16px;
+    margin-right: 15px;
   }
   .el-menu-item {
     padding-left: 15px !important;
@@ -111,8 +110,6 @@ export default {
     }
   }
   .el-submenu {
-    border-top: 2px solid darken(@co6, 10%);
-    // border-left: 2px solid darken(@co6, 10%);
     border-bottom: 2px solid darken(@co6, 10%);
   }
   .el-submenu .el-menu-item {

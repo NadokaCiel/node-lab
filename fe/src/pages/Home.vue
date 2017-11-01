@@ -16,7 +16,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'home',
   created: function() {
-    let vm = this;
+    const vm = this;
     setInterval(() => {
       vm.now += 1000
     }, 1000)

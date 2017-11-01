@@ -25,10 +25,13 @@ import './style/common.less'
 import * as OfflinePluginRuntime from 'offline-plugin/runtime'
 OfflinePluginRuntime.install()
 
+import cButton from './components/cButton.vue'
+
 
 Vue.use(Vuex)
 Vue.use(VueCookie)
 Vue.use(Router)
+Vue.component('cButton', cButton)
 // Vue.use(ElementUI)
 Vue.prototype.$ajax = ajax
 Vue.prototype.$hint = hint

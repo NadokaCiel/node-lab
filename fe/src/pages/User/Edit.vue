@@ -4,7 +4,7 @@
       <el-form-item label="Name">
         <el-input v-model="form.user_name"></el-input>
       </el-form-item>
-      <el-form-item label="Password">
+      <el-form-item label="Password" v-show="id==0">
         <el-input v-model="form.password"></el-input>
       </el-form-item>
       <el-form-item>
@@ -17,7 +17,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import cButton from '../../components/cButton.vue'
 export default {
   name: 'user-edit',
   created: function() {
@@ -47,8 +46,6 @@ export default {
       const vm = this
       return vm.$ajax('get', '/api/user/'+vm.id,{}, data => {
         vm.form = data
-      }, error => {
-        console.log(error)
       })
     },
     save() {
@@ -56,14 +53,10 @@ export default {
       if (vm.id && vm.id!=0) {
         return vm.$ajax('put', '/api/user/'+vm.id, vm.form, data => {
           vm.toList()
-        }, error => {
-          console.log(error)
         })
       } else {
         return vm.$ajax('post', '/api/user', vm.form, data => {
           vm.toList()
-        }, error => {
-          console.log(error)
         })
       }
     }
@@ -71,7 +64,6 @@ export default {
   computed: mapState({}),
   watch: {},
   components: {
-    cButton
   }
 }
 </script>
