@@ -23,13 +23,14 @@
 
 
 <script>
-import menuData from '../data/menu'
+import { menuData, menuMap} from '../data/menu'
 import { mapState } from 'vuex'
 export default {
   name: 'nav',
   data() {
     return {
     	menu:menuData,
+      menuMap,
       showText:false
     }
   },
@@ -37,7 +38,7 @@ export default {
   },
   methods:{
     getRouter(){
-      return this.$route.name
+      return this.menuMap[this.$route.name]
     },
     menuSelected(index,path){
       this.$router.push({name:index})

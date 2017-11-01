@@ -13,6 +13,7 @@ export default {
 		invisiable: true,
 		icon: "fa-edit",
 		path: '/user/edit/:id',
+		activeAs: 'List',
 		component: r => require.ensure([], () => r(require('./Edit.vue')), 'user')
 	}
 }

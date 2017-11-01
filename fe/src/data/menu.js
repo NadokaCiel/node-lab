@@ -1,8 +1,9 @@
 import Catalog from '../router/catalog'
 
-export default getMenu()
+export const menuData = getData()
+export const menuMap = getMap()
 
-function getMenu() {
+function getData() {
     const menu = [{
         name: "Home",
         icon: "fa-home",
@@ -34,4 +35,29 @@ function getMenu() {
     })
 
     return menu
+}
+
+function getMap() {
+    const map = {
+        'home': 'home'
+    }
+
+    Object.keys(Catalog).forEach(k => {
+        const level1 = Catalog[k]
+        map[k] = k
+        Object.keys(level1).forEach(p => {
+            const level2 = level1[p]
+            if (p == "self" || !level2.component) {
+                return
+            }
+            let key = k + '-' + p
+            if (level2.activeAs) {
+                map[key] = k + '-' + level2.activeAs
+            } else {
+                map[key] = key
+            }
+        })
+    })
+
+    return map
 }
