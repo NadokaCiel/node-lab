@@ -31,6 +31,14 @@ export function success(res, data) {
 	})
 }
 
+export function unauthorized(res, massage) {
+
+	return res.send({
+		status: 'unauthorized',
+		massage: massage && massage.length > 0 ? massage : 'Please login before your further operation.'
+	})
+}
+
 export function error(res, massage) {
 
 	return res.send({

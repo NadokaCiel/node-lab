@@ -12,7 +12,7 @@ class Check {
 		} else {
 			const redis_token = await store.getAsync(token)
 			if (!redis_token) {
-				return unauthorized(res, '登录超时，请您重新登陆')
+				return unauthorized(res)
 			} else {
 				next()
 			}
@@ -24,7 +24,7 @@ function unauthorized(res, massage) {
 
 	return res.send({
 		status: 'unauthorized',
-		massage: massage && massage.length > 0 ? massage : '用户未登录'
+		massage: massage && massage.length > 0 ? massage : 'Login timeout, please re-login.'
 	})
 }
 

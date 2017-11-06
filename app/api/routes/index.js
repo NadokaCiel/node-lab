@@ -2,6 +2,7 @@
 
 import user from './user'
 import token from './token'
+import password from './password'
 import character from './character'
 import Check from '../../middlewares/check'
 
@@ -11,7 +12,8 @@ const visitor = {
 }
 
 const consumer = {
-	character
+	character,
+	password
 }
 
 export default app => {

@@ -24,11 +24,11 @@ class User {
 			new_user.id = await getId('user_id')
 		    new_user.password = encryption(new_user.password)
 
-			const user = await new_user.save()
+			const user = await new_user.save().select('-password')
 			await success(res, user)
 		}
 		catch(err){
-			await error(res, err)
+			return error(res, err)
 		}
 	}
 
@@ -41,20 +41,20 @@ class User {
 			await success(res, user)
 		}
 		catch(err){
-			await error(res, err)
+			return error(res, err)
 		}
 	}
 
 	async update(req, res) {
-		if (!req.params || !req.body.user_name || !req.body.password) {
+		if (!req.params || !req.body.user_name) {
 			return error(res, "Parameter missing！")
 		}
 		try{
-			const user = await UserModel.findOneAndUpdate(req.params.id, req.body, {new: true})
+			const user = await UserModel.findOneAndUpdate(req.params.id, req.body, {new: true}).select('-password')
 			await success(res, user)
 		}
 		catch(err){
-			await error(res, err)
+			return error(res, err)
 		}
 	}
 
@@ -67,7 +67,7 @@ class User {
 			await success(res, "User successfully deleted")
 		}
 		catch(err){
-			await error(res, err)
+			return error(res, err)
 		}
 	}
 }

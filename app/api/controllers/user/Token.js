@@ -16,7 +16,8 @@ class Token {
 		if (!req.body || !req.body.user_name || !req.body.password) {
 			return error(res, "Parameter missing！")
 		}
-		const user = await UserModel.findOne({user_name:req.body.user_name})
+		const name = req.body.user_name
+		const user = await UserModel.findOne({user_name:name})
 		if(!user){
 			return error(res, "User doesn't exsit")
 		}
@@ -25,15 +26,15 @@ class Token {
 		}
 		try{
 			const now = Date.now() + ''
-			const token = encryption(req.body.user_name + now)
-			const auth = encryption(req.body.user_name)
-			await store.setAsync(token, 'true', 'EX', 7 * 24 * 60 * 60 * 1000)
+			const token = encryption(name + now)
+			const auth = encryption(name)
+			await store.setAsync(token, user.id, 'EX', 7 * 24 * 60 * 60 * 1000)
 			res.cookie('token', token, { maxAge:7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: false })
 			res.cookie('auth', auth, { maxAge:7 * 24 * 60 * 60 * 1000, httpOnly: false, secure: false })
 		    return success(res, "Login successfully.")
 		}
 		catch(err){
-			await error(res, err)
+			return error(res, err)
 		}
 	}
 
@@ -48,7 +49,7 @@ class Token {
 			return success(res, "Logout successfully.")
 		}
 		catch(err){
-			await error(res, err)
+			return error(res, err)
 		}
 	}
 }
