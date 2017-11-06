@@ -15,5 +15,10 @@ export default {
 		path: '/user/edit/:id',
 		activeAs: 'List',
 		component: r => require.ensure([], () => r(require('./Edit.vue')), 'user')
+	},
+	Reset: {
+		icon: "fa-lock",
+		path: '/user/reset',
+		component: r => require.ensure([], () => r(require('./Reset.vue')), 'user')
 	}
 }

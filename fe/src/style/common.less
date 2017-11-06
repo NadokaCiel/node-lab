@@ -1,49 +1,50 @@
 @import './color.less';
+
 .text-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   -ms-text-overflow: ellipsis;
   white-space: nowrap;
 }
-.clearfix:after{
-   content: " "; 
-   display: block; 
-   height: 0; 
-   clear: both; 
-   visibility: hidden;  
+.clearfix:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
-.normal{
-	color: @lighter;
+.normal {
+  color: @lighter;
 }
-.rare{
-	color: @a5;
+.rare {
+  color: @a5;
 }
-.epic{
-	color: @co24;
+.epic {
+  color: @co24;
 }
-.lengendary{
-	color:@co17;
+.lengendary {
+  color: @co17;
 }
-
+.el-form {
+  .el-form-item {
+    margin-bottom: 22px;
+  }
+}
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+  width: 5px;
+  height: 5px;
 }
-
 ::-webkit-scrollbar-button {
-    display: none;
+  display: none;
 }
-
 ::-webkit-scrollbar-thumb {
-    background: @a5;
-    border-radius: 7px;
+  background: @a5;
+  border-radius: 7px;
 }
-
 ::-webkit-scrollbar-track {
-    border-radius: 7px;
+  border-radius: 7px;
 }
-
 ::-webkit-scrollbar-track-piece {
-    border-radius: 7px;
-    background: @sec2;
+  border-radius: 7px;
+  background: @sec2;
 }

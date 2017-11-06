@@ -7,4 +7,5 @@ export default {
 	"x":"x",
 	"c":"c",
 	"v":"v",
+	"Enter":"enter"
 }

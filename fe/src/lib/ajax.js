@@ -15,6 +15,15 @@ export function ajax(method, url, payload = {}, successFunc, errorFunc) {
 		const data = response.data
 		if (data.status == "success") {
 			successFunc && successFunc(data.data)
+		} else if (data.status == "unauthorized") {
+			vm.$aware(data.massage, "Operation Failed", {
+				type: 'warning',
+				confirmButtonText: 'Login',
+				callback: (action) => {
+					if (action == 'cancel') return
+					this.$router && this.$router.push({name:"Login"})
+				}
+			})
 		} else {
 			vm.$hint(data.massage, 'Operation Failed', {
 				type: 'error'

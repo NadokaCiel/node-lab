@@ -3,10 +3,10 @@
     <div class="login-title">{{appName}}</div>
     <el-form class="login-form" ref="form" :model="form" :rules="rules" size="mini" label-position="top">
       <el-form-item label="Name" required prop="user_name">
-        <el-input v-model="form.user_name" placeholder="Please Enter Your Username"></el-input>
+        <el-input v-model="form.user_name" placeholder="Please Enter Your Username."></el-input>
       </el-form-item>
       <el-form-item label="Password" required prop="password">
-        <el-input type="password" v-model="form.password" placeholder="Please Enter Your Password" auto-complete="off"></el-input>
+        <el-input type="password" v-model="form.password" placeholder="Please Enter Your Password." auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item style="text-align: center;">
         <c-button type="primary" :clickFunc="[login]">Login</c-button>
@@ -22,6 +22,10 @@ import cButton from '../components/cButton.vue'
 export default {
   name: 'login',
   created: function() {
+    const vm = this
+    vm.bus.$on('keyup',key=>{
+      key == "enter" && vm.login()
+    })
   },
   data() {
     return {
@@ -48,6 +52,7 @@ export default {
     }
   },
   computed: mapState({
+    bus: state => state.bus,
     appName: state => state.appName,
   }),
   components: {

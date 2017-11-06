@@ -12,7 +12,7 @@ import data from './store'
 import router from './router'
 
 import {ajax} from './lib/ajax'
-import {hint} from './lib/message'
+import {hint, aware} from './lib/message'
 import _ from "lodash"
 
 import 'flex.css'
@@ -35,6 +35,7 @@ Vue.component('cButton', cButton)
 // Vue.use(ElementUI)
 Vue.prototype.$ajax = ajax
 Vue.prototype.$hint = hint
+Vue.prototype.$aware = aware
 
 //注册全局过滤器
 Object.keys(filters).forEach(key => {
