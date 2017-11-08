@@ -122,6 +122,7 @@ if (isProd) {
     new HtmlWebpackPlugin({
       filename: '../dist/index.html',
       template: path.resolve(__dirname, './src/index.tpl'),
+      favicon: path.resolve(__dirname, './src/assets/favicon.ico'),
       inject: true
     }),
     new ExtractTextPlugin({
