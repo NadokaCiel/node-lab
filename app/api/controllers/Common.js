@@ -50,29 +50,35 @@ export function error(res, massage) {
 //获取id列表
 export async function getId(type) {
 	if (!idList.includes(type)) {
-		console.log('ID type error!');
-		throw new Error('ID type error!');
+		console.log('ID type error!')
+		throw new Error('ID type error!')
 		return
 	}
 	try {
-		const idData = await Ids.findOne();
-		idData[type]++;
-		await idData.save();
+		const idData = await Ids.findOne()
+		if(!idData[type] && idData[type] !== 0){
+			const newIds = {}
+			newIds[type] = 0
+			await Ids.update({}, { $set: newIds}, {multi: 1})
+		}
+		idData[type]++
+		await idData.save()
 		return idData[type]
 	} catch (err) {
-		console.log('Get ID failed!');
+		console.log('Get ID failed!')
 		throw new Error(err)
+		return
 	}
 }
 
 export function encryption(password) {
-	const newpassword = Md5(Md5(password).substr(2, 4) + Md5(password));
+	const newpassword = Md5(Md5(password).substr(2, 4) + Md5(password))
 	return newpassword
 }
 
 export function Md5(password) {
-	const md5 = crypto.createHash('md5');
-	return md5.update(password).digest('base64');
+	const md5 = crypto.createHash('md5')
+	return md5.update(password).digest('base64')
 }
 
 function makeList(arr, count) {

@@ -1,6 +1,6 @@
 'use strict';
 
-import CharacterModel from '../../models/character/Character'
+import ItemModel from '../../models/item/Item'
 import {
 	getId,
 	repackList,
@@ -8,21 +8,21 @@ import {
 	error
 } from '../Common'
 
-class Character {
+class Item {
 
 	async list(req, res) {
-		await repackList(CharacterModel, req, res)
+		await repackList(ItemModel, req, res)
 	}
 
 	async create(req, res) {
 		if (!req.body || !req.body.name) {
 			return error(res, "Parameter missing！")
 		}
-		const new_character = new CharacterModel(req.body)
+		const new_item = new ItemModel(req.body)
 		try{
-			new_character.id = await getId('character_id')
-			const character = await new_character.save()
-			await success(res, character)
+			new_item.id = await getId('item_id')
+			const item = await new_item.save()
+			await success(res, item)
 		}
 		catch(err){
 			await error(res, err)
@@ -34,8 +34,8 @@ class Character {
 			return error(res, "Parameter missing！")
 		}
 		try{
-			const character = await CharacterModel.findOne({id:req.params.id})
-			await success(res, character)
+			const item = await ItemModel.findOne({id:req.params.id})
+			await success(res, item)
 		}
 		catch(err){
 			await error(res, err)
@@ -47,8 +47,8 @@ class Character {
 			return error(res, "Parameter missing！")
 		}
 		try{
-			const character = await CharacterModel.findOneAndUpdate({id:req.params.id}, req.body, {new: true})
-			await success(res, character)
+			const item = await ItemModel.findOneAndUpdate({id:req.params.id}, req.body, {new: true})
+			await success(res, item)
 		}
 		catch(err){
 			await error(res, err)
@@ -60,8 +60,8 @@ class Character {
 			return error(res, "Parameter missing！")
 		}
 		try{
-			const character = await CharacterModel.remove({id: req.params.id})
-			await success(res, "Character successfully deleted")
+			const item = await ItemModel.remove({id: req.params.id})
+			await success(res, "Item successfully deleted")
 		}
 		catch(err){
 			await error(res, err)
@@ -69,4 +69,4 @@ class Character {
 	}
 }
 
-export default new Character()
+export default new Item()

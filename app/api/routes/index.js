@@ -3,6 +3,7 @@
 import user from './user'
 import token from './token'
 import password from './password'
+import item from './item'
 import character from './character'
 import Check from '../../middlewares/check'
 
@@ -11,9 +12,10 @@ const visitor = {
 	token
 }
 
-const consumer = {
+const customer = {
+	item,
 	character,
-	password
+	password,
 }
 
 export default app => {
@@ -21,7 +23,7 @@ export default app => {
 		app.use("/api", visitor[k])
 	})
 
-	Object.keys(consumer).forEach(k => {
-		app.use("/api", Check.checkLogin, consumer[k])
+	Object.keys(customer).forEach(k => {
+		app.use("/api", Check.checkLogin, customer[k])
 	})
 }

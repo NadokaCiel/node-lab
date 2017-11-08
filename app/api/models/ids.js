@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 
 const idsSchema = new mongoose.Schema({
 	user_id: Number,
+	item_id: Number,
 	character_id: Number,
 });
 
@@ -13,10 +14,11 @@ Ids.findOne((err, data) => {
 	if (!data) {
 		const newIds = new Ids({
 			user_id: 0,
+			item_id: 0,
 			character_id: 0,
 		});
 		newIds.save();
 	}
 })
 
-export const idList = ['user_id','character_id']
+export const idList = ['user_id', 'item_id', 'character_id']
