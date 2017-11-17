@@ -53,6 +53,8 @@ export default {
 </script>
 
 <style lang="less">
+@import './style/color.less';
+
 #app {
   font-family: "Microsoft YaHei", "Verdana", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -63,12 +65,15 @@ export default {
     margin-left: 50px;
     transition: all .3s ease;
   }
-  .folded{
-    margin-left:200px;
+  .folded {
+    margin-left: 200px;
     transition: all .3s ease;
   }
 }
 * {
   box-sizing: border-box;
+}
+html {
+  background-color: @a3;
 }
 </style>

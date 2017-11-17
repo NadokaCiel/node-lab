@@ -14,12 +14,12 @@ const router = new Router({
   routes: getRoutes()
 })
 router.beforeEach((to, from, next) => {
-  const auth = router.app.$cookie.get('auth')
-  if(!auth && to.name != "Login"){
-    next({name:"Login"})
-  }else{
+  // const auth = router.app.$cookie.get('auth')
+  // if(!auth && to.name != "Login"){
+  //   next({name:"Login"})
+  // }else{
     next()
-  }
+  // }
 })
 
 function getRoutes() {
