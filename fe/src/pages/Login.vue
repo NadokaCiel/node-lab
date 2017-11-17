@@ -18,7 +18,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import cButton from '../components/cButton.vue'
 export default {
   name: 'login',
   created: function() {
@@ -56,7 +55,6 @@ export default {
     appName: state => state.appName,
   }),
   components: {
-    cButton
   }
 }
 </script>
