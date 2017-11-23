@@ -48,13 +48,19 @@ export default {
           default: "#FFF",
           pattern: "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$"
         },
+        amount: {
+          title: "Amount",
+          type: "number",
+          format: "number",
+          default: 1,
+        },
       },
       layout: [{
         title: "Basic Info",
         contains: ["name","type"]
       }, {
         title: "Basic Attributes",
-        contains: ["color"]
+        contains: ["color","amount"]
       }, {
         title: "Extra Attributes",
         contains: []

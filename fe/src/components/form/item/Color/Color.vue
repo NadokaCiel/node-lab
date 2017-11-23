@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'c-form',
+  name: 'form-color',
   props: {
     form: {
       type: Object,

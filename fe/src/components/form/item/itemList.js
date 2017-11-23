@@ -1,5 +1,5 @@
 const components = {
-  // number: require('./Number/dom.vue'),
+  number: require('./Number/Number.vue'),
   string: require('./String/String.vue'),
   color: require('./Color/Color.vue'),
   enum: require('./Enum/Enum.vue'),

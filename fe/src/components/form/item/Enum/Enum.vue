@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'c-form',
+  name: 'form-enum',
   props: {
     form: {
       type: Object,

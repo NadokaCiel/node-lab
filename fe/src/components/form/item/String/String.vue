@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'c-form',
+  name: 'form-string',
   props: {
     form: {
       type: Object,
