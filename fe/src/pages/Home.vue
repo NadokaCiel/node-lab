@@ -2,9 +2,9 @@
   <div class="home">
     <div class="title-wrapper">
       <div class="my-title">
-        <div class="main-title">{{appName}}</div>
-        <div class="sub-title">A Developing Software Framework</div>
-        <div class="hint">You have been here for {{ now | timeNormalize}}</div>
+        <div class="main-title" v-mousefollower:50>{{appName}}</div>
+        <div class="sub-title" v-mousefollower:35>A Developing Software Framework</div>
+        <div class="hint" v-mousefollower:20>You have been here for {{ now | timeNormalize}}</div>
       </div>
     </div>
   </div>
@@ -65,6 +65,7 @@ export default {
     text-align: center;
     color: @lightgray;
     font-size: .5rem;
+    height: .6rem;
   }
   .hint{
     padding-top: .4em;

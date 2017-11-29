@@ -8,6 +8,7 @@ import { sync } from 'vuex-router-sync'
 
 import App from './App.vue'
 import * as filters from './filters'
+import * as directives from './directives'
 import data from './store'
 import router from './router'
 
@@ -19,6 +20,7 @@ import 'flex.css'
 import 'normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome.css'
+import 'animate.css'
 import './style/common.less'
 
 //For Offline Support
@@ -40,6 +42,11 @@ Vue.prototype.$aware = aware
 //注册全局过滤器
 Object.keys(filters).forEach(key => {
 	Vue.filter(key, filters[key])
+})
+
+//注册全局指令
+Object.keys(directives).forEach(key => {
+	Vue.directive(key, directives[key])
 })
 
 const store = new Vuex.Store(data)

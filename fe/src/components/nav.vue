@@ -1,17 +1,17 @@
 <template>
   <el-menu :default-active="getRouter()" class="nav" @mouseenter.native="showText=!showText" @mouseleave.native="showText=!showText" @select="menuSelected">
     <template v-for="item in menu">
-      <el-menu-item v-if="!item.sub || item.sub.length==0" :index="item.route">
-        <i class="fa fa-fw" :class="item.icon ? item.icon : 'el-icon-null'"></i>
+      <el-menu-item v-if="!item.sub || item.sub.length==0" :index="item.route" @mouseenter.native="item.isHover=!item.isHover" @mouseleave.native="item.isHover=!item.isHover">
+        <i class="fa fa-fw animated" :class="[item.icon ? item.icon : 'el-icon-null',item.isHover ? 'jello' : 'rubberBand']"></i>
         <span>{{showText ? item.name : ''}}</span>
       </el-menu-item>
-      <el-submenu v-if="item.sub && item.sub.length!=0" :index="item.route">
+      <el-submenu v-if="item.sub && item.sub.length!=0" :index="item.route" @mouseenter.native="item.isHover=!item.isHover" @mouseleave.native="item.isHover=!item.isHover">
         <template slot="title">
-          <i class="fa fa-fw" :class="item.icon ? item.icon : 'el-icon-null'"></i>
+          <i class="fa fa-fw animated" :class="[item.icon ? item.icon : 'el-icon-null',item.isHover ? 'jello' : 'rubberBand']"></i>
           <span>{{showText ? item.name : ''}}</span>
         </template>
-        <el-menu-item v-for="(subItem,index) in item.sub" :index="subItem.route" :key="index">
-          <i class="fa fa-fw" :class="subItem.icon ? subItem.icon : 'el-icon-null'"></i>
+        <el-menu-item v-for="(subItem,index) in item.sub" :index="subItem.route" :key="index" @mouseenter.native="subItem.isHover=!subItem.isHover" @mouseleave.native="subItem.isHover=!subItem.isHover">
+          <i class="fa fa-fw animated" :class="[subItem.icon ? subItem.icon : 'el-icon-null',subItem.isHover ? 'jello' : 'rubberBand']"></i>
           <span>{{showText ? subItem.name : ''}}</span>
         </el-menu-item>
       </el-submenu>
@@ -26,6 +26,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'nav',
   data() {
+    addStatus(menuData)
     return {
     	menu:menuData,
       menuMap,
@@ -45,6 +46,15 @@ export default {
   computed: mapState([]),
   components: {
   }
+}
+
+function addStatus(list){
+  list.forEach(i=>{
+    i.isHover = false
+    if(i.sub){
+      addStatus(i.sub)
+    }
+  })
 }
 </script>
 
