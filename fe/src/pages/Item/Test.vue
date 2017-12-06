@@ -1,6 +1,6 @@
 <template>
   <div class="item-test">
-    <c-form class="my-form" :settings="settings" :layout="layout" @change="formChange">
+    <c-form class="my-form" :settings="settings" :layout="layout" @valid="formFilled" :values="values" @change="formChange">
     </c-form>
   </div>
 </template>
@@ -15,13 +15,20 @@ export default {
   },
   data() {
     return {
+      values: {
+        name:"Peach",
+        type:"food",
+        color:"#FF6E97",
+        amount:4
+      },
       settings: {
         name: {
           title: "Name",
           description: "No more than 8 words",
           type: "string",
           format: "string",
-          default: "ItemX"
+          default: "ItemX",
+          required: true
         },
         type: {
           title: "Type",
@@ -38,7 +45,8 @@ export default {
             label: 'armor',
             value: 'armor'
           }],
-          default: "food"
+          default: "weapon",
+          required: true
         },
         color: {
           title: "Color",
@@ -46,7 +54,8 @@ export default {
           type: "string",
           format: "color",
           default: "#FFF",
-          pattern: "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$"
+          required: true,
+          // pattern: "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$"
         },
         amount: {
           title: "Amount",
@@ -74,7 +83,10 @@ export default {
         name: 'Item-List'
       })
     },
-    formChange(data){
+    formChange(validity, data) {
+      console.log(validity)
+    },
+    formFilled(data) {
       console.log(data)
     }
   },

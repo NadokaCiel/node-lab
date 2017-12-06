@@ -5,7 +5,6 @@ const vm = new Vue()
 
 export function ajax(method, url, payload = {}, successFunc, errorFunc) {
 	if (!axios[method]) {
-		errorFunc()
 		throw new Error('不支持的请求类型');
 	}
 	if (method == 'get') {

@@ -25,9 +25,9 @@ export default {
       }
     },
     values: {
-      type: Array,
+      type: Object,
       default: () => {
-        return []
+        return {}
       }
     },
     layout:{
@@ -70,6 +70,15 @@ export default {
           rule.pattern = new RegExp(this.settings[key].pattern)
         }
         ruleMap[key] = [rule]
+
+        if (this.settings[key].required) {
+          const validator = {
+            required: true,
+            message: 'Please Enter ' + this.settings[key].title,
+            trigger: 'change'
+          }
+          ruleMap[key].push(validator)
+        }
         if (formatMap[format]) {
           const validator = {
             validator: formatMap[format],
@@ -95,9 +104,10 @@ export default {
       this.formJson = formJson;
       this.$nextTick(() => {
         (this.$refs.settingConfig).validate((valid) => {
+          this.$emit('change', valid, this.formJson)
           if (valid) {
             // 发出更新事件
-            this.$emit('change', this.formJson);
+            this.$emit('valid', this.formJson)
           }
         })
       })

@@ -3,7 +3,7 @@
     <div @mouseenter="onMenu(true)" @mouseleave="onMenu(false)" v-if="$route.name!='Login'">
       <nav-bar></nav-bar>
     </div>
-    <transition name="el-fade-in-linear">
+    <transition name="el-zoom-in-top">
       <router-view class="app-view" :class="{'folded':expand}"></router-view>
     </transition>
   </div>
