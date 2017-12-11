@@ -1,5 +1,5 @@
 <template>
-  <el-input-number class="form-number" v-model="form.value" @change="userChange" :min="1" :max="10"></el-input-number>
+  <el-input-number class="form-number" v-model="form.value" @change="userChange" :min="option.min || 0" :max="option.max || infinity"></el-input-number>
 </template>
 
 <script>

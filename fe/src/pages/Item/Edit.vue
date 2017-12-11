@@ -1,51 +1,50 @@
 <template>
   <div class="item-edit">
-    <el-form class="my-form" ref="form" :model="form" label-width="80px">
-      <el-form-item label="Name">
-        <el-input v-model="form.name"></el-input>
-      </el-form-item>
-      <el-form-item label="Type">
-        <el-select v-model="form.type" placeholder="choose a type">
-          <el-option v-for="item in typeOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <c-button type="primary" :clickFunc="[save]">保存</c-button>
-        <el-button @click="toList">取消</el-button>
-      </el-form-item>
-    </el-form>
+    <c-form class="my-form" :settings="settings" :layout="layout" @valid="formFilled" :values="values">
+    </c-form>
+    <div class="age-info">
+      <p class="info-line" v-for="(line,index) in results" :keys="index">
+        <span>我出生于</span>
+        <span class="lengendary">{{values.birthYear}}</span>
+        <span>年，直到</span>
+        <span class="lengendary">{{line.year}}</span>
+        <span>岁才遇到</span>
+        <span class="lengendary">{{line.diff ? line.diff : ''}}</span>
+        <span>{{line.diff == 0 ? '所有数字都相同的年份。' : '个数字都不相同的年份。'}}</span>
+        <span class="lengendary">({{(values.birthYear + line.year + '').padStart(4, "0")}})</span>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import cForm from '../../components/form/cForm.vue'
 export default {
   name: 'item-edit',
   created: function() {
-    let vm = this
-    if(vm.$route.params && vm.$route.params.id && vm.$route.params.id!=0){
-      vm.id = vm.$route.params.id
-      vm.getData()
-    }
+    const vm = this
   },
   data() {
     return {
-      id: 0,
-      form: {
-        name: '',
-        type: '',
+      results:[],
+      values: {
+        birthYear:"1994",
       },
-      typeOptions:[{
-        value:"food",
-        label:"food"
-      },{
-        value:"weapon",
-        label:"weapon"
-      },{
-        value:"armor",
-        label:"armor"
-      }]
+      settings: {
+        birthYear: {
+          title: "Year of birth",
+          type: "number",
+          format: "number",
+          default: 1990,
+          min:1,
+          max:3000,
+        },
+      },
+      layout: [{
+        title: "Basic Info",
+        contains: ["birthYear"]
+      }],
     }
   },
   methods: {
@@ -55,28 +54,41 @@ export default {
         name: 'Item-List'
       })
     },
-    getData(){
-      const vm = this
-      return vm.$ajax('get', '/api/item/'+vm.id,{}, data => {
-        vm.form = data
-      })
+    formFilled(data) {
+      this.values = data
+      this.calc()
     },
-    save() {
-      const vm = this
-      if (vm.id && vm.id!=0) {
-        return vm.$ajax('put', '/api/item/'+vm.id, vm.form, data => {
-          vm.toList()
+    calc() {
+      const birthYear = this.values.birthYear
+      const flag = {}
+      this.results = []
+      for (let i = birthYear + 1; i < 3000; i++) {
+        const yearStr = (i + '').padStart(4, "0")
+        const yearArr = yearStr.split("")
+        const map = {}
+        yearArr.forEach(i => {
+          map[i] = true
         })
-      } else {
-        return vm.$ajax('post', '/api/item', vm.form, data => {
-          vm.toList()
-        })
+        const num = Object.keys(map).length
+        if (!flag[num]) {
+          flag[num] = true
+
+          const result = {
+            year: i - birthYear,
+            diff: num == 1 ? 0 : num,
+          }
+          this.results.push(result)
+        }
+        if (Object.keys(flag).length >= 4) {
+          return
+        }
       }
     }
   },
   computed: mapState({}),
   watch: {},
   components: {
+    cForm
   }
 }
 </script>
@@ -85,10 +97,14 @@ export default {
 <style lang="less" scoped>
 @import '../../style/color.less';
 .item-edit {
-  .my-form{
-    margin: 20px auto;
-    padding-right: 30%;
-    width: 80%;
+  .my-form {
+    margin: 60px auto;
+    width: 70%;
+  }
+  .age-info {
+    font-size: 14px;
+    text-align: center;
+    margin: 60px auto;
   }
 }
 </style>
