@@ -16,9 +16,4 @@ export default {
 		activeAs: 'List',
 		component: r => require.ensure([], () => r(require('./Edit.vue')), 'item')
 	},
-	Test: {
-		icon: "fa-wrench",
-		path: '/item/test',
-		component: r => require.ensure([], () => r(require('./Test.vue')), 'item')
-	}
 }
