@@ -24,7 +24,7 @@
 import { menuData, menuMap} from '../data/menu'
 import { mapState } from 'vuex'
 export default {
-  name: 'nav',
+  name: 'nav-bar',
   data() {
     addStatus(menuData)
     return {

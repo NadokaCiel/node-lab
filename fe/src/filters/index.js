@@ -26,6 +26,10 @@ export function date(time, format="yyyy-MM-dd hh:mm:ss") {
 	return new Date(time).Format(format)
 }
 
+export function numPad(num, digit = 10) {
+	return (num + "").padStart(digit, "0")
+}
+
 function pluralize(time, label) {
 	if (time === 1) {
 		return time + label + ' '

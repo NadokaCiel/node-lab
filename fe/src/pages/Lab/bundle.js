@@ -9,4 +9,9 @@ export default {
 		path: '/lab/birth/',
 		component: r => require.ensure([], () => r(require('./Birth.vue')), 'Lab')
 	},
+	Tetris: {
+		icon: "fa-plus-square-o",
+		path: '/lab/tetris/',
+		component: r => require.ensure([], () => r(require('./Tetris.vue')), 'Lab')
+	},
 }

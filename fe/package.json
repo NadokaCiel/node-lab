@@ -13,7 +13,7 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "axios": "^0.16.2",
-    "element-ui": "next",
+    "element-ui": "^2.0.11",
     "flex.css": "^1.1.7",
     "font-awesome.css": "^4.7.2",
     "lodash": "^4.17.4",
