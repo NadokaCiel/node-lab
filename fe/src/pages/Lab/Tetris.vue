@@ -19,6 +19,9 @@
         </div>
       </div>
     </div>
+    <div class="toolbox">
+      <c-button type="primary" :clickFunc="[regame]">Game On</c-button>
+    </div>
   </div>
 </template>
 
@@ -31,7 +34,7 @@ export default {
     vm.bus.$on('keyup',key=>{
       vm.move(key)
     })
-    vm.regame()
+    // vm.regame()
   },
   data() {
     const bars = [{
@@ -114,11 +117,33 @@ export default {
       vm.move('down')
       setTimeout(() => {
         if (!vm.allowDown(vm.moveDots)) {
+          vm.checkLine()
           vm.score += 100
           vm.createBar()
         }
         vm.nextStep()
       }, 1000)
+    },
+    checkLine() {
+      const vm = this
+      for (let i = vm.height-1; i >= 0; i--) {
+        const line = []
+        for (let j = 0; j < vm.width; j++) {
+          const key = `(${j},${i})`
+          if(vm.dotMap[key].type != 0){
+            line.push(vm.dotMap[key])
+          }
+        }
+        if(line.length == vm.width){
+          line.forEach(dot=>{
+            dot.type = 0
+          })
+          vm.score += 500
+          vm.clearMoveDots()
+          vm.downAll(i)
+          vm.checkLine()
+        }
+      }
     },
     createBar(){
       const vm = this
@@ -220,6 +245,21 @@ export default {
         default:
       }
     },
+    downAll(depth) {
+      const vm = this
+      for (let i = depth - 1; i >= 0; i--) {
+        for (let j = 0; j < vm.width; j++) {
+          const o_key = `(${j},${i})`
+          const n_key = `(${j},${i+1})`
+          const type = vm.dotMap[o_key].type
+          if (type == 0) {
+            continue
+          }
+          vm.dotMap[o_key].type = 0
+          vm.dotMap[n_key].type = type
+        }
+      }
+    },
     changeHint() {
       this.hints = _.shuffle(this.hints)
       this.hint = this.hints[0]
@@ -265,6 +305,9 @@ export default {
       return flag
     },
     allowDown(dots) {
+      if (dots.length <= 0) {
+        return
+      }
       const vm = this
       let flag = true
       dots.forEach(dot => {
@@ -294,6 +337,10 @@ export default {
 .lab-tetris {
   width: 100%;
   height: 100%;
+
+  .toolbox{
+    text-align: center;
+  }
 
   .game-panel {
     margin: 40px auto;

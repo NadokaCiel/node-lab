@@ -14,4 +14,9 @@ export default {
 		path: '/lab/tetris/',
 		component: r => require.ensure([], () => r(require('./Tetris.vue')), 'Lab')
 	},
+	Cartoon: {
+		icon: "fa-superpowers",
+		path: '/lab/cartoon/',
+		component: r => require.ensure([], () => r(require('./Cartoon.vue')), 'Lab')
+	},
 }
