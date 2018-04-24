@@ -1,10 +1,10 @@
 <template>
   <div class="part-galaxy galaxy-box">
     <div class="spheres" ref="spheres">
-      <div class="sphere purple"  style="width:20px; height:20px;"></div>
-      <div class="sphere green"  style="width:16px; height:16px;"></div>
-      <div class="sphere pink"  style="width:22px; height:22px;"></div>
-      <div class="sphere blue"  style="width:12px; height:12px;"></div>
+      <div class="sphere purple" style="width:20px; height:20px;"></div>
+      <div class="sphere green" style="width:16px; height:16px;"></div>
+      <div class="sphere pink" style="width:22px; height:22px;"></div>
+      <div class="sphere blue" style="width:12px; height:12px;"></div>
     </div>
     <div class="circles">
       <div class="circle" style="width:120px; height:120px;"></div>
