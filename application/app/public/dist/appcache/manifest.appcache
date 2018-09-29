@@ -1,6 +1,6 @@
 CACHE MANIFEST
-#ver:2017-11-24 17:44:04
-#plugin:4.8.4
+#ver:2018-7-23 17:58:52
+#plugin:4.9.0
 
 CACHE:
 /dist/674f50d287a8c48dc19ba404d20fe713.eot
@@ -8,14 +8,15 @@ CACHE:
 /dist/fee66e712a8a08eef5805a46892932ad.woff
 /dist/b06871f281fee6b241d60582ae9369b9.ttf
 /dist/912ec66d7572ff821749319396470bde.svg
-/dist/27c72091ab590fb5d1c3ef90f988ddce.ttf
+/dist/6f0a76321d30f3c8120915e57f7bd77e.ttf
 /dist/9269ace28588b8b4c4cff4dc6efab44e.jpg
-/dist/item.9064.min.js
-/dist/user.9064.min.js
-/dist/character.9064.min.js
-/dist/backpack.9064.min.js
-/dist/build.9064.js
-/dist/common.bab976e80b70aa0000bc.css
+/dist/Lab.93c2.min.js
+/dist/user.93c2.min.js
+/dist/item.93c2.min.js
+/dist/character.93c2.min.js
+/dist/backpack.93c2.min.js
+/dist/build.93c2.js
+/dist/common.c66638c3f26f7f484343.css
 /dist/favicon.ico
 /dist/../dist/
 

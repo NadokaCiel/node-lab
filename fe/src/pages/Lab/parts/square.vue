@@ -1,7 +1,7 @@
 <template>
   <div class="part-square square-box">
     <div class="square" ref="square"></div>
-    <c-button type="primary" :clickFunc="[runSquare]">Run Square</c-button>
+    <c-button type="primary" :clickFunc="[runSquare]">{{ isActive ? 'Reset' : 'Run' }}</c-button>
   </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
   data() {
     return {
       inited:false,
-      cartoon:{}
+      isActive:false,
+      cartoon:{},
     }
   },
   methods: {
@@ -30,6 +31,7 @@ export default {
     runSquare() {
       const vm = this
       const squareStyler = styler(vm.$refs.square)
+      vm.isActive = !vm.isActive
       if(vm.cartoon['square']){
         if(vm.cartoon['square'].isActive()){
           vm.cartoon['square'].seek(0)

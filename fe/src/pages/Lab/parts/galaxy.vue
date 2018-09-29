@@ -74,6 +74,7 @@ export default {
     width: 428px;
     height: 428px;
     z-index: 15;
+    transform: rotateX(40deg) rotateY(30deg);
   }
   .sphere {
     position: absolute;
@@ -93,6 +94,7 @@ export default {
     bottom: 0;
     left: 0;
     z-index: 10;
+    transform: rotateX(40deg) rotateY(30deg);
 
     .circle {
       position: absolute;
@@ -104,7 +106,7 @@ export default {
       height: 120px;
       margin: auto;
       border-radius: 50%;
-      border: 1px solid @lightergray;
+      border: 1px solid @gray;
     }
   }
   .purple {

@@ -11,7 +11,7 @@ module.exports = {
   entry: './src/app.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: './dist/',
     filename: isProd ? 'build.[hash:4].js' : 'build.js',
     chunkFilename: "[name].[hash:4].min.js"
   },
