@@ -19,4 +19,9 @@ export default {
 		path: '/lab/cartoon/',
 		component: r => require.ensure([], () => r(require('./Cartoon.vue')), 'Lab')
 	},
+	Cellular: {
+		icon: "fa-braille",
+		path: '/lab/cellular/',
+		component: r => require.ensure([], () => r(require('./Cellular.vue')), 'Lab')
+	},
 }
