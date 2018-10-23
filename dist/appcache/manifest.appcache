@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:2018-9-14 14:37:04
+#ver:2018-10-23 16:14:41
 #plugin:4.9.0
 
 CACHE:
@@ -10,13 +10,13 @@ CACHE:
 ./dist/912ec66d7572ff821749319396470bde.svg
 ./dist/6f0a76321d30f3c8120915e57f7bd77e.ttf
 ./dist/9269ace28588b8b4c4cff4dc6efab44e.jpg
-./dist/Lab.0d57.min.js
-./dist/user.0d57.min.js
-./dist/item.0d57.min.js
-./dist/character.0d57.min.js
-./dist/backpack.0d57.min.js
-./dist/build.0d57.js
-./dist/common.7bc3da4a8e9c4d53abcf.css
+./dist/Lab.64b0.min.js
+./dist/user.64b0.min.js
+./dist/item.64b0.min.js
+./dist/character.64b0.min.js
+./dist/backpack.64b0.min.js
+./dist/build.64b0.js
+./dist/common.d5f29f55537054eca255.css
 ./dist/favicon.ico
 ./dist/../dist/
 

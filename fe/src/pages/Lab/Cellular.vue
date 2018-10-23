@@ -2,15 +2,20 @@
   <div class="lab-cellular">
     <div class="game-panel" flex="main:center cross:center" v-loading="gameLoading">
       <transition-group name="cell" tag="div" class="game-board">
-        <el-tooltip v-for="item in graph" :key="item.id" placement="top">
+        <!-- <el-tooltip v-for="item in graph" :key="item.id" placement="top">
           <div slot="content">{{item.key}}</div>
-          <div class="item-box" :class="{'dot-alive':item.survival == 1}" :style="{'width':(100 / width) + '%','padding-bottom':(100 / width) + '%','height':0,}">
+          <div class="item-box" :class="{'dot-alive':item.survival == 1}" :style="{'width':(100 / width) + '%','padding-bottom':(100 / width) + '%','height':0,}" @click="nodeClick(item)">
           </div>
-        </el-tooltip>
+        </el-tooltip> -->
+        <div v-for="item in graph" :key="item.id" class="item-box" :class="{'dot-alive':item.survival == 1}" :style="{'width':(100 / width) + '%','padding-bottom':(100 / width) + '%','height':0,}" @click="nodeClick(item)">
+        </div>
       </transition-group>
     </div>
     <div class="toolbox">
+      <c-button type="primary" :clickFunc="[generate, true]">RandomMap</c-button>
+      <c-button type="primary" :clickFunc="[changeMode]">Edit Mode: {{editMode?'on':'off'}}</c-button>
       <c-button type="primary" :clickFunc="[next]">Next Step</c-button>
+      <c-button type="primary" :clickFunc="[promote]">{{!autoMove ? 'auto' : 'pause'}}</c-button>
     </div>
   </div>
 </template>
@@ -39,6 +44,8 @@ export default {
     }
     return {
       gameLoading: true,
+      editMode:false,
+      autoMove:false,
       width:50,
       height:50,
       graph: [],
@@ -51,8 +58,9 @@ export default {
       const vm = this
       vm.generate()
       vm.gameLoading = false
+      vm.updateGraph()
     },
-    generate() {
+    generate(random) {
       const vm = this
       const data = []
       vm.graph = []
@@ -62,7 +70,7 @@ export default {
           const item = {
             id: vm.width * i + j + 1,
             key:`(${j},${i})`,
-            survival: this.seedMap[`(${j},${i})`] || 0,
+            survival: !random ? (this.seedMap[`(${j},${i})`] || 0) : (Math.random() < 0.3 ? 1 : 0),
             x:j,
             y:i,
           }
@@ -71,6 +79,17 @@ export default {
         }
       }
       vm.graph = data
+    },
+    changeMode() {
+      const vm = this
+      vm.editMode = !vm.editMode
+    },
+    nodeClick(item){
+      const vm = this
+      if(!vm.editMode){
+        return
+      }
+      item.survival = item.survival ? 0 : 1
     },
     next() {
       const vm = this
@@ -111,7 +130,24 @@ export default {
       } else {
         return 1
       }
-    }
+    },
+    promote(){
+      this.autoMove = !this.autoMove
+      this.updateGraph()
+    },
+    updateGraph(){
+      const vm = this
+      if(!vm.autoMove){
+        return
+      }
+      vm.next()
+      setTimeout(()=>{
+        this.updateGraph()
+      },500)
+    },
+  },
+  beforeDestroy(){
+    this.autoMove = false
   },
   computed: mapState(["bus"]),
   watch: {},
