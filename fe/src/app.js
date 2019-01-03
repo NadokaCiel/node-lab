@@ -16,6 +16,10 @@ import {ajax} from './lib/ajax'
 import {hint, aware} from './lib/message'
 import _ from "lodash"
 
+import ECharts from 'vue-echarts/components/ECharts.vue'
+
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
 import 'flex.css'
 import 'normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -34,6 +38,9 @@ Vue.use(Vuex)
 Vue.use(VueCookie)
 Vue.use(Router)
 Vue.component('cButton', cButton)
+Vue.component('v-chart', ECharts)
+
+Vue.use(VueAwesomeSwiper)
 // Vue.use(ElementUI)
 Vue.prototype.$ajax = ajax
 Vue.prototype.$hint = hint

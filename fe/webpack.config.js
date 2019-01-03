@@ -80,6 +80,8 @@ module.exports = {
     }
   },
   devServer: {
+    useLocalIp: true,
+    host: '0.0.0.0',
     historyApiFallback: true,
     noInfo: true,
     proxy: {

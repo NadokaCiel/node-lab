@@ -24,4 +24,9 @@ export default {
 		path: '/lab/cellular/',
 		component: r => require.ensure([], () => r(require('./Cellular.vue')), 'Lab')
 	},
+	Charts: {
+		icon: "fa-pie-chart",
+		path: '/lab/charts/',
+		component: r => require.ensure([], () => r(require('./Charts.vue')), 'Lab')
+	},
 }
