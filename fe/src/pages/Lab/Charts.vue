@@ -460,7 +460,7 @@ export default {
 @import '../../style/color.less';
 .lab-charts {
   position: fixed;
-  margin:0 !important;
+  margin: 0 !important;
   width: 100%;
   height: 100%;
   // background-color: #1F6FB5;
@@ -468,7 +468,7 @@ export default {
   color: #DDF0ED;
   z-index: 100000;
 
-  .home-btn{
+  .home-btn {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -529,19 +529,19 @@ export default {
       margin: 12px 0;
 
       &.creating {
-        color: #CCFC62;
+        color: @creating;
       }
 
       &.developing {
-        color: #9FF048;
+        color: @developing;
       }
 
       &.online {
-        color: #25C6FC;
+        color: @online;
       }
 
       &.finished {
-        color: #DE8100;
+        color: @finished;
       }
 
       .line-title, .line-num, .line-percent {
@@ -570,5 +570,6 @@ export default {
     }
 
   }
+
 }
 </style>

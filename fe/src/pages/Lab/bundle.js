@@ -29,4 +29,14 @@ export default {
 		path: '/lab/charts/',
 		component: r => require.ensure([], () => r(require('./Charts.vue')), 'Lab')
 	},
+	ProjectList: {
+		icon: "fa-list",
+		path: '/lab/project/list',
+		component: r => require.ensure([], () => r(require('./ProjectList.vue')), 'Lab')
+	},
+	ProjectIndex: {
+		icon: "fa-tachometer",
+		path: '/lab/project/index',
+		component: r => require.ensure([], () => r(require('./ProjectIndex.vue')), 'Lab')
+	},
 }
