@@ -51,7 +51,8 @@ module.exports = app => {
 				})
 				// this.ctx.status = 201
 			} catch (err) {
-				this.error("Create User Failed")
+				this.error(err)
+				// this.error("Create User Failed")
 			}
 		}
 

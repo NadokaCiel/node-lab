@@ -8,6 +8,16 @@
 
 see [egg docs][egg] for more detail.
 
+### Redis
+```bash
+$ redis-server
+```
+
+### Mongodb
+```bash
+$ mongod
+```
+
 ### Development
 
 ```bash
